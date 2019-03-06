@@ -17,7 +17,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and().formLogin();
+        http
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").permitAll();
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -30,4 +34,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("victor").password(passwordEncoder().encode("phimphachanh")).authorities("USER");
     }
+
 }
